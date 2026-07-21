@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tom Foolree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #f1e6d2;
+    --sand-deep: #e7d6b3;
+    --paper: #fbf5e8;
+    --ink: #26221b;
+    --muted: rgba(38,34,27,0.55);
+    --ocean: #234a49;
+    --rust: #bf5b2e;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--sand);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* subtle paper grain over everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8vh 6vw 6vh;
+    position: relative;
+  }
+
+  .hero-mark {
+    font-family: "Permanent Marker", cursive;
+    font-size: clamp(2.8rem, 12vw, 7.5rem);
+    line-height: 1;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: 0.01em;
+    transform: rotate(-1.5deg);
+  }
+
+  .hero-underline {
+    width: clamp(140px, 30vw, 260px);
+    height: 14px;
+    margin: 18px auto 0;
+    background: var(--rust);
+    opacity: 0.85;
+    border-radius: 40% 60% 55% 45% / 60% 40% 60% 40%;
+    transform: rotate(-2deg);
+  }
+
+  .hero-tag {
+    margin-top: 30px;
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+    max-width: 320px;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 46px;
+    background: linear-gradient(to bottom, transparent, var(--muted));
+    animation: pulse-down 2.2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-down {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ---------- LETTER ---------- */
+  .letter-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 4vh 6vw 10vh;
+  }
+
+  .letter {
+    background: var(--paper);
+    max-width: 640px;
+    width: 100%;
+    padding: clamp(32px, 6vw, 64px) clamp(24px, 6vw, 56px);
+    box-shadow: 0 18px 40px rgba(38,34,27,0.16), 0 2px 6px rgba(38,34,27,0.08);
+    transform: rotate(-0.6deg);
+    position: relative;
+    opacity: 0;
+    animation: letter-in 1.1s ease-out 0.3s forwards;
+  }
+
+  .letter::before {
+    /* washi tape */
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 110px;
+    height: 34px;
+    background: rgba(191,91,46,0.35);
+    border: 1px solid rgba(191,91,46,0.15);
+  }
+
+  @keyframes letter-in {
+    from { opacity: 0; transform: rotate(-0.6deg) translateY(22px); }
+    to   { opacity: 1; transform: rotate(-0.6deg) translateY(0); }
+  }
+
+  .letter-greeting {
+    font-family: "Caveat", cursive;
+    font-weight: 700;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    color: var(--rust);
+    margin: 6px 0 22px;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+
+  .letter-body p {
+    font-family: "Caveat", cursive;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+    line-height: 1.55;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+
+  .letter-signoff {
+    margin-top: 18px;
+    text-align: right;
+    font-family: "Caveat", cursive;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+    color: var(--ocean);
+    transform: rotate(1deg);
+  }
+
+  .letter-signoff span {
+    display: block;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-label {
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 28px;
+  }
+
+  .gallery-wrap {
+    padding: 4vh 5vw 8vh;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .frame {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--sand-deep);
+    cursor: pointer;
+  }
+
+  .shot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transform: translateY(18px) scale(1.02);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--d, 0ms);
+  }
+
+  .shot.in-view {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .frame:hover .shot {
+    transform: scale(1.05);
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,17,12,0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 4vh 4vw;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 88vh;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .lb-btn {
+    position: absolute;
+    background: none;
+    border: none;
+    color: var(--sand);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 14px 18px;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+
+  .lb-btn:hover { opacity: 1; }
+  .lb-close { top: 4px; right: 4px; font-size: 1.8rem; }
+  .lb-prev { left: 4px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 4px; top: 50%; transform: translateY(-50%); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    text-align: center;
+    padding: 10vh 6vw 8vh;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 480px) {
+    .letter::before { width: 84px; height: 28px; top: -14px; }
+    .lb-prev, .lb-next { padding: 10px 12px; font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1 class="hero-mark">Tom Foolree</h1>
+    <div class="hero-underline"></div>
+    <p class="hero-tag">a domain, waiting for whatever you make it</p>
+    <div class="hero-scroll"></div>
+  </section>
+
+  <section class="letter-wrap" id="letter">
+    <div class="letter">
+      <div class="letter-greeting">Dear Tom Siargao (nz),</div>
+      <div class="letter-body">
+        <p>I got this domain so you can start putting your stuff out there whenever you're ready — surfing videos, your art, tattooing, clothes, whatever shape Tom Foolree takes, I know it'll be fucking amazing.</p>
+        <p>Whenever you want to talk about it, or anything at all, I'll be there. Everything you touch grows, and I've never met anyone with a smile as infectious as yours.</p>
+        <p>Love you so much, mate. Can't wait to see what you create — and can't wait till the next time we score some waves together :)</p>
+      </div>
+      <div class="letter-signoff">
+        <span>Lots of love,</span>
+        <span>Tibor Siargao</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-wrap" id="gallery-section">
+    <p class="gallery-label">a few from the roll</p>
+    <div class="gallery" id="gallery">
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-001.jpg" data-full="photos/full/photo-001.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-002.jpg" data-full="photos/full/photo-002.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-003.jpg" data-full="photos/full/photo-003.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-004.jpg" data-full="photos/full/photo-004.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-005.jpg" data-full="photos/full/photo-005.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-006.jpg" data-full="photos/full/photo-006.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-007.jpg" data-full="photos/full/photo-007.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-008.jpg" data-full="photos/full/photo-008.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-009.jpg" data-full="photos/full/photo-009.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-010.jpg" data-full="photos/full/photo-010.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-011.jpg" data-full="photos/full/photo-011.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-012.jpg" data-full="photos/full/photo-012.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-013.jpg" data-full="photos/full/photo-013.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-014.jpg" data-full="photos/full/photo-014.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-015.jpg" data-full="photos/full/photo-015.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-016.jpg" data-full="photos/full/photo-016.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-017.jpg" data-full="photos/full/photo-017.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-018.jpg" data-full="photos/full/photo-018.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-019.jpg" data-full="photos/full/photo-019.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-020.jpg" data-full="photos/full/photo-020.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-021.jpg" data-full="photos/full/photo-021.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-022.jpg" data-full="photos/full/photo-022.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-023.jpg" data-full="photos/full/photo-023.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-024.jpg" data-full="photos/full/photo-024.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-025.jpg" data-full="photos/full/photo-025.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-026.jpg" data-full="photos/full/photo-026.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-027.jpg" data-full="photos/full/photo-027.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-028.jpg" data-full="photos/full/photo-028.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-029.jpg" data-full="photos/full/photo-029.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-030.jpg" data-full="photos/full/photo-030.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-031.jpg" data-full="photos/full/photo-031.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-032.jpg" data-full="photos/full/photo-032.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-033.jpg" data-full="photos/full/photo-033.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-034.jpg" data-full="photos/full/photo-034.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-035.jpg" data-full="photos/full/photo-035.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-036.jpg" data-full="photos/full/photo-036.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-037.jpg" data-full="photos/full/photo-037.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-038.jpg" data-full="photos/full/photo-038.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-039.jpg" data-full="photos/full/photo-039.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-040.jpg" data-full="photos/full/photo-040.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-041.jpg" data-full="photos/full/photo-041.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-042.jpg" data-full="photos/full/photo-042.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-043.jpg" data-full="photos/full/photo-043.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-044.jpg" data-full="photos/full/photo-044.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-045.jpg" data-full="photos/full/photo-045.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-046.jpg" data-full="photos/full/photo-046.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-047.jpg" data-full="photos/full/photo-047.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-048.jpg" data-full="photos/full/photo-048.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-049.jpg" data-full="photos/full/photo-049.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-050.jpg" data-full="photos/full/photo-050.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-051.jpg" data-full="photos/full/photo-051.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-052.jpg" data-full="photos/full/photo-052.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-053.jpg" data-full="photos/full/photo-053.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-054.jpg" data-full="photos/full/photo-054.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-055.jpg" data-full="photos/full/photo-055.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-056.jpg" data-full="photos/full/photo-056.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-057.jpg" data-full="photos/full/photo-057.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-058.jpg" data-full="photos/full/photo-058.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-059.jpg" data-full="photos/full/photo-059.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-060.jpg" data-full="photos/full/photo-060.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-061.jpg" data-full="photos/full/photo-061.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-062.jpg" data-full="photos/full/photo-062.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-063.jpg" data-full="photos/full/photo-063.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-064.jpg" data-full="photos/full/photo-064.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-065.jpg" data-full="photos/full/photo-065.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-066.jpg" data-full="photos/full/photo-066.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-067.jpg" data-full="photos/full/photo-067.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-068.jpg" data-full="photos/full/photo-068.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-069.jpg" data-full="photos/full/photo-069.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-070.jpg" data-full="photos/full/photo-070.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-071.jpg" data-full="photos/full/photo-071.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-072.jpg" data-full="photos/full/photo-072.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-073.jpg" data-full="photos/full/photo-073.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-074.jpg" data-full="photos/full/photo-074.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-075.jpg" data-full="photos/full/photo-075.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-076.jpg" data-full="photos/full/photo-076.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-077.jpg" data-full="photos/full/photo-077.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:0ms"><img class="shot" src="photos/thumb/photo-078.jpg" data-full="photos/full/photo-078.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:60ms"><img class="shot" src="photos/thumb/photo-079.jpg" data-full="photos/full/photo-079.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:120ms"><img class="shot" src="photos/thumb/photo-080.jpg" data-full="photos/full/photo-080.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:180ms"><img class="shot" src="photos/thumb/photo-081.jpg" data-full="photos/full/photo-081.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:240ms"><img class="shot" src="photos/thumb/photo-082.jpg" data-full="photos/full/photo-082.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+        <div class="frame" style="--d:300ms"><img class="shot" src="photos/thumb/photo-083.jpg" data-full="photos/full/photo-083.jpg" alt="Tom and Tibor, somewhere along the way" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+  <p class="footer" id="footer">this page will self-destruct whenever you're ready to build</p>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+  </div>
+
+<script>
+  // fade gallery shots in as they scroll into view
+  var shots = document.querySelectorAll('.shot');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  shots.forEach(function (img) { io.observe(img); });
+
+  // lightbox
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  var current = -1;
+
+  function openAt(i) {
+    current = (i + frames.length) % frames.length;
+    var img = frames[current].querySelector('img');
+    lbImg.src = img.getAttribute('data-full');
+    lbImg.alt = img.alt;
+    lightbox.classList.add('open');
+  }
+
+  function closeLb() {
+    lightbox.classList.remove('open');
+    lbImg.src = '';
+  }
+
+  frames.forEach(function (frame, i) {
+    frame.addEventListener('click', function () { openAt(i); });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); openAt(current - 1); });
+  document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); openAt(current + 1); });
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLb();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') openAt(current - 1);
+    if (e.key === 'ArrowRight') openAt(current + 1);
+  });
+</script>
+</body>
+</html>
